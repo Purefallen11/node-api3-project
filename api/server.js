@@ -1,6 +1,8 @@
 const express = require('express');
-
+const usersRouter = require('./users/users-router')
 const server = express();
+
+server.use('/api/users', usersRouter)
 
 // remember express by default cannot parse JSON in request bodies
 
