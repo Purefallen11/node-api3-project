@@ -23,11 +23,11 @@ async function validateUserId(req, res, next) {
 }
 
 function validateUser(req, res, next) {
-  const name = req.body
-  if (!name || !name.trim()) {
-    res.status(400).json('name required')
+  const name  = req.body
+  if (!name) {
+    res.status(400).json('name is required')
   } else {
-    req.name = name.trim()
+    req.name = name
     next()
   }
 }
