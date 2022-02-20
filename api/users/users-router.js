@@ -32,8 +32,11 @@ router.post('/', validateUser, (req, res) => {
 });
   
 
-router.put('/:id',validateUserId, validateUser, validatePost, (req, res) => {
-  
+router.put('/:id',validateUserId, validateUser, async (req, res) => {
+  const change = req.body
+  const { id } = req.params
+  const updates = await usersModel.insert(id, change)
+  res.status(200).json(updates)
 });
 
 router.delete('/:id', (req, res) => {

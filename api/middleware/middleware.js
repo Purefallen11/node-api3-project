@@ -23,13 +23,18 @@ async function validateUserId(req, res, next) {
 }
 
 function validateUser(req, res, next) {
-  const name  = req.body
+  try
+  {
+    const name = req.body
   if (!name) {
     res.status(400).json('name is required')
   } else {
-    req.name = name
+    req.name = name.name
     next()
   }
+  } catch (err) {
+    res.status(500).json({message: err.message})
+}
 }
 
 function validatePost(req, res, next) {
