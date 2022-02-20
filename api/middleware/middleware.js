@@ -23,12 +23,11 @@ async function validateUserId(req, res, next) {
 }
 
 function validateUser(req, res, next) {
-  const user = req.body
-
-  if (!user) {
-    res.status(400).json('missing required name field')
+  const name = req.body
+  if (!name || !name.trim()) {
+    res.status(400).json('name required')
   } else {
-    req.username = user
+    req.name = name.trim()
     next()
   }
 }
@@ -48,5 +47,6 @@ function validatePost(req, res, next) {
 module.exports = {
   logger,
   validateUserId,
-  validateUser
+  validateUser,
+  validatePost
 }
